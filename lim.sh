@@ -3,7 +3,7 @@
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 
-udp_file='/etc/UDPserver'
+udp_file='/etc/IP'
 
 droppids(){
   port_dropbear=`ps aux|grep 'dropbear'|awk NR==1|awk '{print $17;}'`
@@ -77,8 +77,8 @@ sshmonitor(){
       touch $udp_file/limit
       timer=$(cat $udp_file/limit)
       [[ -z ${timer} ]] && timer="3"
-      at now +${timer} minutes <<< "$udp_file/limitador.sh" &>/dev/null
-      [[ -z $(cat "/var/spool/cron/crontabs/root"|grep "limitador.sh") ]] && echo "@reboot root $udp_file/limitador.sh" >> /var/spool/cron/crontabs/root
+      at now +${timer} minutes <<< "$udp_file/lim.sh" &>/dev/null
+      [[ -z $(cat "/var/spool/cron/crontabs/root"|grep "lim.sh") ]] && echo "@reboot root $udp_file/lim.sh" >> /var/spool/cron/crontabs/root
 }
 
 expired(){
@@ -101,6 +101,6 @@ case $1 in
            *)user_type=$(echo "$all_user"|grep -v 'hwid\|token'|awk -F ':' '{print $1}') && sshmonitor;;
 esac
 
-# @daily root /etc/ADMRufu/install/limitador.sh >> /var/spool/cron/crontabs/root
+# @daily root /etc/ADMRufu/install/lim.sh >> /var/spool/cron/crontabs/root
 
-# 0 1 * * * /etc/ADMRufu/install/limitador.sh >> /var/spool/cron/crontabs/root
+# 0 1 * * * /etc/ADMRufu/install/lim.sh >> /var/spool/cron/crontabs/root
