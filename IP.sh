@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
-# Obfuscate by @THEFATHER12
-# Contacta https://t.me/THEFATHER12
+# Obfuscate by @infinity
+# Contacta https://t.me/infinity
 # 
 #
 #
